@@ -15,11 +15,12 @@ export class AuthService {
       return {
         access_token: await this.jwtService.signAsync(payload),
       };
-      //throw new UnauthorizedException();
+      //
     } else {
-      return {
+      throw new UnauthorizedException();
+     /* return {
         access: 'denied',
-      };
+      };*/
     }
   }
   getHello(): string {
