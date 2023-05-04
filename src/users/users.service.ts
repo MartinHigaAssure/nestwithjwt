@@ -38,6 +38,13 @@ export class UsersService {
     });
     //return `This action returns a #${id} user`;
   }
+  
+  signin(username: string, password: string) {
+    return this.usersRepository.findOne({
+      where: { email: username, password: password },
+    });
+    //return `This action returns a #${id} user`;
+  }
 
   findByUser(username: string): Promise<User | undefined>  {
     return this.usersRepository.findOne({

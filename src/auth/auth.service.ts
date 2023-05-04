@@ -9,7 +9,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   async signIn(username, pass) {
-    const user = await this.usersService.searchOne(username, pass);
+    const user = await this.usersService.signin(username, pass);
     if (user) {
       const payload = { username: user.username, sub: user.id };
       return {

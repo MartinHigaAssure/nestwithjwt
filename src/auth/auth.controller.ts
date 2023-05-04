@@ -7,18 +7,19 @@ import {
   Get,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { UpdateUserDto } from '../users/dto/update-user.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @HttpCode(HttpStatus.OK)
+
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>) {
-    const u=signInDto.username.toString();
-    const p=signInDto.password.toString();
-    //return this.authService.signIn(u, p);
-    return { user: u, pass: p };
+  signIn(@Body() signInDto: UpdateUserDto) {
+    const u=signInDto.username;
+    const p=signInDto.password;
+    return this.authService.signIn(u, p);
+    //return { user: u, pass: p };
   }
 
   @Get()
